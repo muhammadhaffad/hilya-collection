@@ -7,7 +7,7 @@
         </x-public.section-badge>
         <div class="flex-wrap px-3 justify-center grid grid-cols-3 lg:grid-cols-6 gap-3">
             @if (count($brands) > 5)
-                @for ($i = 0; $i < 1; $i++)
+                @for ($i = 0; $i < 5; $i++)
                     <div class="block">
                         <x-public.brand :brand="$brands[$i]"></x-public.brand>
                     </div>
@@ -50,7 +50,7 @@
                     <div class="flex-wrap px-3 justify-center grid grid-cols-3 lg:grid-cols-5 gap-3">
                         @for ($j = $i; $j < count($brands); $j++)
                             <div class="block">
-                                <x-public.brand :brand="$brands[$i]"></x-public.brand>
+                                <x-public.brand :brand="$brands[$j]"></x-public.brand>
                             </div>
                         @endfor
                     </div>
