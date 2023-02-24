@@ -1,0 +1,93 @@
+@extends('web.backoffice.layouts.default')
+
+@push('styles')
+{{-- @livewireStyles --}}
+<link rel="stylesheet" href="{{ asset('css/app.css') }}">
+<link rel="stylesheet" href="{{ asset('owl-carousel/css/owl.carousel.min.css') }}">
+<link rel="stylesheet" href="{{ asset('owl-carousel/css/owl.theme.default.min.css') }}">
+<link rel="stylesheet" href="{{ asset('trix-editor/trix.css') }}">
+<style>
+    trix-toolbar [data-trix-button-group="file-tools"] {
+        display: none;
+    }
+    /* Chrome, Safari, Edge, Opera */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+    }
+
+    /* Firefox */
+    input[type=number] {
+    -moz-appearance: textfield;
+    }
+</style>
+@endpush
+
+@push('scripts')
+{{-- @livewireScripts --}}
+<script src="{{ asset('js/backoffice/script.js') }}"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+const saveButton = document.querySelector('#save-button');
+
+saveButton.addEventListener('click', function (event) {
+    let form = event.target.closest('form');
+    Swal.fire({
+      title: 'Apakah Anda yakin?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Iya, ubah data ini!',
+      cancecButtonText: 'Tidak'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        form.submit();  
+      }
+    })
+})
+</script>
+@endpush
+
+@section('contents')
+
+<section class="relative pt-2 px-3">
+    <div class="container">
+        <nav class="flex justify-between px-3 items-center" aria-label="Breadcrumb">
+            <ol class="inline-flex items-center space-x-1 md:space-x-3 mr-2 overflow-hidden">
+                <li class="inline-flex items-center">
+                    <a href="{{ route('admin.dashboard') }}"
+                        class="inline-flex items-center text-sm lg:text-base font-medium text-green-500 hover:text-green-700 dark:text-green-300 dark:hover:text-white">
+                        <svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z">
+                            </path>
+                        </svg>
+                        Home
+                    </a>
+                </li>
+                <li aria-current="page">
+                    <div class="flex items-center">
+                        <svg class="w-6 h-6 text-green-300" fill="currentColor" viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                        <span
+                            class="ml-1 text-sm lg:text-base font-medium text-green-500 md:ml-2 dark:text-green-300">Pengaturan</span>
+                    </div>
+                </li>
+            </ol>
+            <a href="javascript:history.back()" class="text-blue-500 text-sm lg:text-base">
+                Kembali
+            </a>
+        </nav>
+    </div>
+</section>
+
+@include('web.backoffice.pages.settings.sections.settings-form')
+@endsection

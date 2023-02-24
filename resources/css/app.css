@@ -1,0 +1,110 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+body {
+    @apply font-inter
+}
+
+.button {
+    @apply py-2 px-3 font-bold block rounded-md hover:bg-slate-200 hover:shadow-inner focus:bg-slate-200 focus:shadow-inner
+}
+
+.button-primary {
+    @apply bg-blue-600 text-white hover:text-blue-600 focus:text-blue-600
+}
+
+.button-secondary {
+    @apply bg-slate-400 text-white hover:text-slate-900 focus:text-slate-400
+}
+
+.button-success {
+    @apply bg-green-500 text-white hover:text-green-500 focus:text-green-500
+}
+
+.button-danger {
+    @apply bg-red-600 text-white hover:text-red-600 focus:text-red-600
+}
+
+.button-warning {
+    @apply bg-yellow-500 text-slate-900 hover:text-yellow-500 focus:text-yellow-500
+}
+
+.button-info {
+    @apply bg-blue-200 text-slate-900 hover:text-slate-900 focus:text-slate-900
+}
+
+.button-light {
+    @apply bg-white text-slate-900 hover:text-slate-900 focus:text-slate-900
+}
+
+.button-dark {
+    @apply bg-slate-700 text-white hover:text-slate-900 focus:text-slate-900
+}
+
+.button-active {
+    @apply bg-slate-200 shadow-inner
+}
+
+.form-control {
+    @apply border text-sm rounded-lg block w-full p-2;
+}
+
+.invalid input {
+    @apply bg-red-50 border-red-500 text-red-900 placeholder-red-700 focus:ring-red-500 focus:border-red-500
+}
+
+.invalid select {
+    @apply bg-red-50 border-red-500 text-red-900 placeholder-red-700 focus:ring-red-500 focus:border-red-500
+}
+
+.invalid label {
+    @apply text-red-700
+}
+
+.invalid p {
+    @apply text-red-600 block
+}
+
+.navbar-fixed {
+    @apply fixed z-[999] bg-white;
+    //backdrop-filter: blur(5px);
+    box-shadow: inset 0 -1px 0 0 rgba(0, 0, 0, 0.1);
+}
+
+.prices-detail-hidden {
+    @apply scale-y-0 hidden
+}
+
+.prices-detail-show {
+    @apply scale-y-100 block
+}
+
+ol {
+    list-style: decimal;
+    margin-left: 2em;
+}
+
+ul {
+    list-style: disc;
+    margin-left: 2em;
+}
+
+nav > ol {
+    list-style: none;
+    margin-left: 0;
+}
+
+nav > ul {
+    list-style: none;
+    margin-left: 0;
+}
+
+input[type=file]::-webkit-file-upload-button,
+input[type=file]::file-selector-button {
+    @apply text-white bg-green-500 hover:bg-green-600 font-medium text-sm cursor-pointer border-0 py-2.5 pl-8 pr-4;
+    margin-inline-start: -1rem;
+    margin-inline-end: 1rem;
+}
