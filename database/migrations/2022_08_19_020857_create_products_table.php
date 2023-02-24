@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('nama');
             $table->text('deskripsi');
             $table->string('status');
-            $table->unsignedInteger('berat');
+            $table->unsignedInteger('berat')->default(100);
             $table->timestamp('tanggalPost');
             $table->timestamps();
         });

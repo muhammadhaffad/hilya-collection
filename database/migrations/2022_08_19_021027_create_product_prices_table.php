@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Color;
 use App\Models\Product;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -16,10 +17,12 @@ return new class extends Migration
     {
         Schema::create('product_prices', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Product::class)->nullable()->onUpdate('cascade')->onDelete('cascade');;
+            $table->foreignIdFor(Product::class)->nullable()->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignIdFor(Color::class)->onUpdate('cascade')->onDelete('restrict');
             $table->string('ukuran');
             $table->unsignedInteger('jumlah')->nullable();
             $table->unsignedInteger('harga')->nullable();
+            $table->unsignedInteger('diskon')->default(0);
             $table->smallInteger('jenis', false, true);
             $table->timestamps();
         });
