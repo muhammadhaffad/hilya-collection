@@ -78,6 +78,17 @@
                         <input id="price-{{ $index }}" name="stock[{{ $index }}][harga]" type="number"
                             value="{{(@$productPrice['harga'] ?: @$productPrice->harga) ?? ''}}"
                             class="block p-2 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <span class="text-xs">
+                            <button type="button" class="cursor-pointer underline" onclick="toggleKeterangan(this)">
+                                Berikan keterangan
+                            </button>
+                        </span>
+                        <div class="{{(@$productPrice['keterangan'] ?: @$productPrice->keterangan) ? 'block' : 'hidden'}}">
+                            <div class="w-full space-x-2 flex">
+                                <input type="text" name="stock[{{ $index }}][keterangan]" placeholder="contoh: Tidak termasuk hijab" value="{{(@$productPrice['keterangan'] ?: @$productPrice->keterangan) ?? ''}}"
+                                    class="block p-2 text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            </div>
+                        </div>
                     </div>
                     <div class="space-y-2">
                         <label for="qty-{{ $index }}"
@@ -177,6 +188,17 @@
                     class="block text-sm font-medium text-gray-900 dark:text-gray-300">Harga</label>
                 <input id="price-${id}" name="stock[${id}][harga]" type="number"
                     class="block p-2 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <span class="text-xs">
+                    <button type="button" class="cursor-pointer underline" onclick="toggleKeterangan(this)">
+                        Berikan keterangan
+                    </button>
+                </span>
+                <div class="hidden">
+                    <div class="w-full space-x-2 flex">
+                        <input type="text" name="stock[${id}][keterangan]" placeholder="contoh: Tidak termasuk hijab" value=""
+                            class="block p-2 text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    </div>
+                </div>
             </div>
             <div class="space-y-2">
                 <label for="qty-${id}"
@@ -191,6 +213,10 @@
     }
 
     function toggleColorInput(element) {
+        element.parentNode.nextElementSibling.classList.toggle('hidden');;
+    }
+
+    function toggleKeterangan(element) {
         element.parentNode.nextElementSibling.classList.toggle('hidden');;
     }
 

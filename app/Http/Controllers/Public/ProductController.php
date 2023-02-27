@@ -98,16 +98,18 @@ class ProductController extends Controller
         }
         $productPrices = $product->product_prices()->whereIn('id', array_keys($request->produk))->get();
         $sizeSelected = [];
+        $genders = [0 => 'PR Dewasa', 1 => 'LK Dewasa', 2 => 'PR Anak', 3 => 'LK Dewasa'];
         foreach ($productPrices as $productPrice) {
             $warna = ucfirst($productPrice->color()->first()->warna);
-            $gender = $productPrice->jenis ? 'Lk' : 'Pr';
+            $gender = $genders[$productPrice->jenis];
             $jumlah = $request->produk[$productPrice->id]['jumlah'];
-            $sizeSelected[] = "$warna ($productPrice->ukuran) ($gender) berjumlah $jumlah";
+            $keterangan = $productPrice->keterangan ? "($productPrice->keterangan)" : "";
+            $sizeSelected[] = "$warna ($productPrice->ukuran) untuk $gender berjumlah $jumlah $keterangan";
         }
         $contact = Contact::first();
-        $sizeSelected = join(', ', $sizeSelected);
+        $sizeSelected = join("\n", $sizeSelected);
         $jenisProduct = $product->status == 'preorder' ? 'preorder' : 'memesan';
-        $body = "Assalamualaikum wr wb,..Permisi, Saya ingin $jenisProduct produk ({$product->product_brand->nama}) $product->nama dengan warna dan ukuran {$sizeSelected}";
+        $body = "Assalamualaikum wr wb,..Permisi, Saya ingin $jenisProduct produk ({$product->product_brand->nama}) $product->nama dengan warna dan ukuran sebagai berikut:\n{$sizeSelected}";
         $link = sprintf("https://wa.me/62%s?text=%s", $contact->telp, urlencode($body));
         // return dd($request);
         return redirect($link);

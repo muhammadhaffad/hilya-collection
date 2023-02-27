@@ -85,45 +85,6 @@
         }
     </script>
 
-    <script>
-        let textAddWarna = document.querySelectorAll('.add-warna');
-        textAddWarna.forEach(function(element) {
-            element.addEventListener('click', function(event) {
-                event.target.parentNode.nextElementSibling.classList.toggle('hidden');
-            })
-        })
-
-        let buttonAddWarna = document.querySelectorAll('.button-add-warna');
-        buttonAddWarna.forEach(function(element) {
-            element.addEventListener('click', function(event) {
-                let warna = event.target.previousElementSibling.value;
-                fetch(`../add/color?warna=${warna}`)
-                    .then(response => response.text())
-                    .then(function(data) {
-                        alert(data);
-                        event.target.previousElementSibling.value = '';
-                        console.info(event.target.parentNode.previousSibling.parentNode.classList.toggle('hidden'));
-                    });
-            });
-        });
-
-        let selectWarnaInput = document.querySelectorAll('.select-warna');
-        selectWarnaInput.forEach(function(element) {
-            element.addEventListener('mousedown', function(event) {
-                fetch('../colors')
-                    .then(response => response.text())
-                    .then(function(data) {
-                        let selectInput = event.target;
-                        let colors = JSON.parse(data);
-                        selectInput.innerHTML = '';
-                        colors.forEach(color => {
-                            selectInput.innerHTML +=
-                                `<option value="${color.id}">${color.warna}</option>`
-                        });
-                    });
-            });
-        });
-    </script>
 @endpush
 
 @section('contents')

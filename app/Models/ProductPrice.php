@@ -15,7 +15,8 @@ class ProductPrice extends Model
         'harga',
         'jenis',
         'color_id',
-        'diskon'
+        'diskon',
+        'keterangan'
     ];
 
     public function product() {

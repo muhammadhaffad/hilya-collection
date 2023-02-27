@@ -45,9 +45,10 @@
     <script src="{{ asset('js/script.js') }}"></script>
     <script src="{{ asset('owl-carousel/js/owl.carousel.min.js') }}"></script>
     <script>
-        function stock_input(id, ukuran, warna, harga, stok, jenis, iter) {
+        function stock_input(id, ukuran, warna, harga, stok, jenis, keterangan) {
             let sisaStok = '';
             let busana = '';
+            keterangan = keterangan ? `(${keterangan})` : '';
             if (parseInt(stok,10) === 2500) {
                 sisaStok = 'Preorder item';
             } else {
@@ -75,7 +76,7 @@
                             ${ukuran}
                         </span>
                         <div class="flex-col w-full">
-                            <div>${busana} | ${harga} | (${warna})</div>
+                            <div>${busana} | ${harga} | ${warna} ${keterangan}</div>
                             <div class="text-xs">${sisaStok}</div>
                         </div>
                         <div>
@@ -119,8 +120,9 @@
                 let harga = e.target.getAttribute('data-harga-produk');
                 let stok = e.target.getAttribute('data-stok-produk');
                 let jenis = e.target.getAttribute('data-jenis');
+                let keterangan = e.target.getAttribute('data-keterangan');
                 if (e.target.checked) {
-                    document.getElementById('container-pesan').innerHTML += stock_input(id, ukuran, warna, harga, stok, jenis, i++);
+                    document.getElementById('container-pesan').innerHTML += stock_input(id, ukuran, warna, harga, stok, jenis, keterangan);
                 } else {
                     document.getElementById(id).remove();
                 }
