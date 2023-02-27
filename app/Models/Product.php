@@ -139,6 +139,8 @@ class Product extends Model
     }
 
     public function deleteProduct() {
+        $this->product_images()->delete();
+        $this->product_prices()->delete();
         $this->delete();
     }
 }
