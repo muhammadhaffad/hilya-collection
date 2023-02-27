@@ -26,7 +26,7 @@ class Stock implements Rule
     public function passes($attribute, $value)
     {
         foreach ($value as $v) {
-            if ($v['jumlah'] <= 0 || $v['harga'] <= 0 || !isset($v['warna'])) {
+            if ($v['jumlah'] < 0 || $v['harga'] <= 0 || !isset($v['warna'])) {
                 return false;
             }
         }
