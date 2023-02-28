@@ -103,7 +103,7 @@
                                 @if($stok->jumlah > 0)
                                 <div class="block">
                                     <div
-                                        class="flex rounded-full text-xs justify-center items-center border-[2px] aspect-square">
+                                        class="flex bg-blue-400 border-blue-600 rounded-full text-xs justify-center items-center border-[2px] aspect-square">
                                         {{ Str::upper($stok->ukuran) }}
                                     </div>
                                     <span class="block text-center text-xs my-1">
@@ -121,7 +121,7 @@
                                 @if($stok->jumlah > 0)
                                 <div class="block">
                                     <div
-                                        class="flex rounded-full text-xs justify-center items-center border-[2px] aspect-square">
+                                        class="flex bg-blue-400 border-blue-600 rounded-full text-xs justify-center items-center border-[2px] aspect-square">
                                         {{ Str::upper($stok->ukuran) }}
                                     </div>
                                     <span class="block text-center text-xs my-1">
@@ -139,7 +139,7 @@
                                 @if ($stok->jumlah > 0)
                                 <div class="block">
                                     <div
-                                        class="flex rounded-full text-xs justify-center items-center border-[2px] aspect-square">
+                                        class="flex bg-blue-400 border-blue-600 rounded-full text-xs justify-center items-center border-[2px] aspect-square">
                                         {{ Str::upper($stok->ukuran) }}
                                     </div>
                                     <span class="block text-center text-xs my-1">
@@ -157,7 +157,7 @@
                                 @if ($stok->jumlah > 0)
                                 <div class="block">
                                     <div
-                                        class="flex rounded-full text-xs justify-center items-center border-[2px] aspect-square">
+                                        class="flex bg-blue-400 border-blue-600 rounded-full text-xs justify-center items-center border-[2px] aspect-square">
                                         {{ Str::upper($stok->ukuran) }}
                                     </div>
                                     <span class="block text-center text-xs my-1">
@@ -307,7 +307,7 @@
                 @foreach ($product->product_prices as $stok)
                     <div class="block">
                         <div
-                            class="flex rounded-full text-xs justify-center items-center border-[2px] aspect-square">
+                            class="flex bg-blue-400 border-blue-600 rounded-full text-xs justify-center items-center border-[2px] aspect-square">
                             {{ Str::upper($stok->ukuran) }}
                         </div>
                         <span class="block text-center text-xs my-1">
