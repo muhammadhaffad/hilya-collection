@@ -54,4 +54,22 @@
             @enderror
         </p>
     </div>
+    <div class="space-y-4 @error('kategori') invalid @enderror">
+        <label for="kategori-produk" class="block">
+            Kategori
+        </label>
+        <select name="kategori" id="kategori-produk"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            @foreach ($categories as $category)
+                <option value="{{ $category }}" @selected(old('kategori', $product->kategori) == $category)>
+                    {{ ucfirst($category) }}
+                </option>
+            @endforeach
+        </select>
+        <p class="mt-2 hidden">
+            @error('kategori')
+                {{ $message }}
+            @enderror
+        </p>
+    </div>
 </div>

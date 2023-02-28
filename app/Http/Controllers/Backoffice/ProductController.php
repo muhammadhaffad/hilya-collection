@@ -24,9 +24,11 @@ class ProductController extends Controller
     {
         $brands = ProductBrand::all();
         $status = array('normal', 'promo', 'preorder');
+        $categories = array('Busana', 'Kaos Kaki', 'Mukena');
         return view('web.backoffice.pages.add-product.layout', [
             'brands' => $brands,
-            'status' => $status
+            'status' => $status,
+            'categories' => $categories
         ]);
     }
 
@@ -50,10 +52,12 @@ class ProductController extends Controller
         $product = $product->load('product_images', 'product_prices.color');
         $brands = ProductBrand::all();
         $status = array('normal', 'promo', 'preorder');
+        $categories = array('Busana', 'Kaos Kaki', 'Mukena');
         return view('web.backoffice.pages.update-product.layout', [
             'product' => $product,
             'brands' => $brands,
-            'status' => $status
+            'status' => $status,
+            'categories' => $categories
         ]);
     }
 

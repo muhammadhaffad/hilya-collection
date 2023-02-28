@@ -42,6 +42,7 @@
             </span>
         @endif
         <div class="p-3 space-y-2">
+            <p class="text-sm font-semibold">{{ $product->kategori }}</p>
             <h1 class="block text-sm lg:text-base overflow-hidden overflow-ellipsis">
                 ({{ $product->product_brand->nama }}) {{ $product->nama }}
             </h1>
@@ -55,29 +56,38 @@
                             @rupiah($product->product_prices->max('harga'))
                         @endif
                     </s>
-                @endif
+                    <p class="block overflow-hidden overflow-ellipsis font-semibold text-green-600">
+                        @if ($product->product_prices->min('harga') == $product->product_prices->max('harga'))
+                            @rupiah($product->product_prices->min('harga') - $product->product_prices->min('harga')*$product->product_prices->first()->diskon/100) 
+                        @else
+                            @rupiah($product->product_prices->min('harga') - $product->product_prices->min('harga')*$product->product_prices->first()->diskon/100)-
+                            @rupiah($product->product_prices->max('harga') - $product->product_prices->max('harga')*$product->product_prices->first()->diskon/100)
+                        @endif
+                        @if ($product->status == 'promo')
+                        <span class="text-red-600">
+                            (-{{ $product->product_prices->first()->diskon }}%)
+                        </span>
+                        @endif
+                    </p>
+                @else
                 <p class="block overflow-hidden overflow-ellipsis font-semibold text-green-600">
                     @if ($product->product_prices->min('harga') == $product->product_prices->max('harga'))
-                        @rupiah($product->product_prices->min('harga') - $product->product_prices->min('harga')*$product->product_prices->first()->diskon/100) 
+                        @rupiah($product->product_prices->min('harga')) 
                     @else
-                        @rupiah($product->product_prices->min('harga') - $product->product_prices->min('harga')*$product->product_prices->first()->diskon/100)-
-                        @rupiah($product->product_prices->max('harga') - $product->product_prices->max('harga')*$product->product_prices->first()->diskon/100)
-                    @endif
-                    @if ($product->status == 'promo')
-                    <span class="text-red-600">
-                        (-{{ $product->product_prices->first()->diskon }}%)
-                    </span>
+                        @rupiah($product->product_prices->min('harga'))-
+                        @rupiah($product->product_prices->max('harga'))
                     @endif
                 </p>
+                @endif
             </div>
-            <button class="text-sm text-green-500 underline" data-popover-target="{{ $product->slug }}">
+            <button class="text-sm text-green-500 underline" tooltip-target="{{ $product->slug }}" onmouseover="let target = this.getAttribute('tooltip-target'); let targetTooltip = document.getElementById(target); new Popover(targetTooltip, this)">
                 Lihat stok...
             </button>
             <div id="{{ $product->slug }}" role="tooltip"
-                class="inline-block absolute invisible z-10 w-64 text-sm font-light text-gray-500 bg-white rounded-lg border border-gray-200 shadow-sm opacity-0 transition-opacity duration-300 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
+                class="inline-block absolute invisible z-10 w-64 text-sm font-medium bg-white rounded-lg border border-gray-200 shadow-sm opacity-0 transition-opacity duration-300 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
                 <div
-                    class="py-2 px-3 bg-gray-100 rounded-t-lg border-b border-gray-200 dark:border-gray-600 dark:bg-gray-700">
-                    <h3 class="font-semibold text-gray-900 dark:text-white">Stok</h3>
+                    class="py-2 px-3 bg-green-100 rounded-t-lg border-b border-green-200 dark:border-green-600 dark:bg-green-700">
+                    <h3 class="font-semibold text-green-900 dark:text-white">Stok</h3>
                 </div>
                 <div class="py-2 px-3 overflow-auto">
                     @php

@@ -28,10 +28,10 @@
         </p>
     </div>
     <div class="space-y-4 @error('status') invalid @enderror">
-        <label for="kategori-produk" class="block">
+        <label for="status-produk" class="block">
             Status produk<span class="text-red-500">*</span><span class="text-xs text-blue-600">(Normal/Promo/Preorder)</span>
         </label>
-        <select name="status" id="kategori-produk"
+        <select name="status" id="status-produk"
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
             @foreach ($status as $type)
                 @if (old('status'))
@@ -39,7 +39,7 @@
                         {{ ucfirst($type) }}
                     </option>
                 @endif
-                <option value="{{ $type }}" @selected('normal' == $type)>
+                <option value="{{ $type }}" @selected('Busana' == $type)>
                     {{ ucfirst($type) }}
                 </option>
             @endforeach
@@ -51,14 +51,37 @@
         </p>
     </div>
     <div class="space-y-4 @error('diskon') invalid @enderror">
-        <label for="kategori-produk" class="block">
+        <label for="diskon-produk" class="block">
             Diskon %<span class="text-xs text-blue-600">(Diisi jika produk promo)</span>
         </label>
-        <input id="kategori-produk" type="number" name="diskon"
+        <input id="diskon-produk" type="number" name="diskon"
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
 
         <p class="mt-2 hidden">
             @error('diskon')
+                {{ $message }}
+            @enderror
+        </p>
+    </div>
+    <div class="space-y-4 @error('kategori') invalid @enderror">
+        <label for="kategori-produk" class="block">
+            Kategori
+        </label>
+        <select name="kategori" id="kategori-produk"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            @foreach ($categories as $category)
+                @if (old('kategori'))
+                    <option value="{{ $category }}" @selected(old('kategori') == $category)>
+                        {{ ucfirst($category) }}
+                    </option>
+                @endif
+                <option value="{{ $category }}" @selected('normal' == $category)>
+                    {{ ucfirst($category) }}
+                </option>
+            @endforeach
+        </select>
+        <p class="mt-2 hidden">
+            @error('kategori')
                 {{ $message }}
             @enderror
         </p>

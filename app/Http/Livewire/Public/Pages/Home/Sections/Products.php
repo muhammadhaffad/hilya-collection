@@ -15,8 +15,8 @@ class Products extends Component
     
     public function render()
     {
-        $products = Product::with('product_prices', 'product_images', 'product_brand')->where('status', '!=', 'preorder')->latest();
-        $count = $products->count()-$this->limit > $this->limit ? $this->limit : $products->count()-$this->limit;
+        $products = Product::with('product_prices', 'product_images', 'product_brand')->whereHas('product_prices', fn($q) => $q->where('jumlah', '>', 0))->where('status', '!=', 'preorder')->latest();
+        $count = $products->count() - $this->limit > $this->limit ? $this->limit : $products->count()-$this->limit;
         
         return view('livewire.public.pages.home.sections.products', ['products' => $products->paginate($this->limit), 'count' => $count]);
     }

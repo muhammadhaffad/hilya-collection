@@ -28,6 +28,7 @@ class StoreProductRequest extends FormRequest
             'nama' => 'required|max:255',
             'product_brand_id' => 'required|numeric',
             'status' => 'required|string',
+            'kategori' => 'required|string',
             'diskon' => 'numeric|nullable',
             'deskripsi' => 'required|string',
             'gambar' => 'required|array|min:1',

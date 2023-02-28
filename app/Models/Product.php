@@ -77,6 +77,7 @@ class Product extends Model
         $this->nama = $request->nama;
         $this->product_brand_id = $request->product_brand_id;
         $this->status = $request->status;
+        $this->kategori = $request->kategori;
         $this->deskripsi = $request->deskripsi;
         $this->save();
 

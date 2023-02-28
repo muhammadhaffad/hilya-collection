@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('product_prices', function (Blueprint $table) {
-            $table->after('jenis', function($table) {
-                $table->string('keterangan')->nullable();
+        Schema::table('products', function (Blueprint $table) {
+            $table->after('nama', function ($table) {
+                $table->string('kategori')->default('Busana');
             });
         });
     }
@@ -27,8 +27,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('product_prices', function (Blueprint $table) {
-            $table->dropColumn('keterangan');
+        Schema::table('products', function (Blueprint $table) {
+            $table->dropColumn('kategori');
         });
     }
 };

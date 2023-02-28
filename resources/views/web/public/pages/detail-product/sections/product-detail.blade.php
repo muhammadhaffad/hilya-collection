@@ -53,6 +53,10 @@
                                 </span>
                             @endif
                         </div>
+                        <p class="text-base">
+                            <span class="font-normal">Kategori: </span>
+                            {{ $product->kategori }}
+                        </p>
                     </div>
                 </div> 
 
@@ -63,14 +67,38 @@
                 <hr>
                 <div class="flex flex-col gap-1 justify-between">
                     <div class="block">
-                        <span class="flex-1 text-2xl font-semibold text-green-600">
-                            @if ($product->product_prices->min('harga') == $product->product_prices->max('harga'))
-                                @rupiah($product->product_prices->min('harga'))
-                            @else
-                                @rupiah($product->product_prices->min('harga')) -
-                                @rupiah($product->product_prices->max('harga'))
-                            @endif
-                        </span>
+                        @if($product->status == 'promo')
+                            <s class="block text-base">
+                                @if ($product->product_prices->min('harga') == $product->product_prices->max('harga'))
+                                    @rupiah($product->product_prices->min('harga')) 
+                                @else
+                                    @rupiah($product->product_prices->min('harga'))-
+                                    @rupiah($product->product_prices->max('harga'))
+                                @endif
+                            </s>
+                            <p class="block text-2xl overflow-hidden overflow-ellipsis font-semibold text-green-600">
+                                @if ($product->product_prices->min('harga') == $product->product_prices->max('harga'))
+                                    @rupiah($product->product_prices->min('harga') - $product->product_prices->min('harga')*$product->product_prices->first()->diskon/100) 
+                                @else
+                                    @rupiah($product->product_prices->min('harga') - $product->product_prices->min('harga')*$product->product_prices->first()->diskon/100)-
+                                    @rupiah($product->product_prices->max('harga') - $product->product_prices->max('harga')*$product->product_prices->first()->diskon/100)
+                                @endif
+                                @if ($product->status == 'promo')
+                                <span class="text-red-600">
+                                    (-{{ $product->product_prices->first()->diskon }}%)
+                                </span>
+                                @endif
+                            </p>
+                        @else
+                            <p class="block text-2xl overflow-hidden overflow-ellipsis font-semibold text-green-600">
+                                @if ($product->product_prices->min('harga') == $product->product_prices->max('harga'))
+                                    @rupiah($product->product_prices->min('harga')) 
+                                @else
+                                    @rupiah($product->product_prices->min('harga'))-
+                                    @rupiah($product->product_prices->max('harga'))
+                                @endif
+                            </p>
+                        @endif
                     </div>
                 </div>
                 <div class="w-full">

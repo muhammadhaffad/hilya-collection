@@ -28,6 +28,7 @@ class UpdateProductRequest extends FormRequest
             'nama' => 'required|max:255',
             'product_brand_id' => 'required|numeric',
             'status' => 'nullable|string',
+            'kategori' => 'nullable|string',
             'stock' => ['array', new Stock],
             'deskripsi' => 'required|string',
             'gambar' => 'sometimes|required|array',

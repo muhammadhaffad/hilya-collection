@@ -40,7 +40,7 @@
                             Ukuran
                         </label>
                         @php
-                            $sizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL', '4XL', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18'];                            
+                            $sizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL', '4XL', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', 'ALL'];                            
                         @endphp
                         <select type="text" name="stock[{{ $index }}][ukuran]" id="size-{{ $index }}"
                             class="block p-2 w-14 text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -161,6 +161,7 @@
                 <option value="16">16</option>
                 <option value="17">17</option>
                 <option value="18">18</option>
+                <option value="ALL">ALL</option>
             </select>
             </div>
             <div class="space-y-2">
