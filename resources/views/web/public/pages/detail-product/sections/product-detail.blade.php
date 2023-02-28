@@ -12,7 +12,7 @@
                                 class="object-cover aspect-square h-full">
                         @endif
                     </div>
-                    <div class="grid grid-cols-4 gap-2 py-2">
+                    <div class="grid grid-cols-5 gap-2 py-2">
                         @foreach ($product->product_images as $image)
                             <div class="">
                                 <div

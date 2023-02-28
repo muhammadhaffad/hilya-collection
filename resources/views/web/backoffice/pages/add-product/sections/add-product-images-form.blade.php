@@ -1,7 +1,7 @@
 <div class="space-y-4 @error('gambar') invalid @enderror">
     <label for="desc" class="block">Gambar produk<span class="text-red-500">*</span></label>
-    <div id="image-upload-container" class="grid grid-cols-2 gap-3 lg:grid-cols-4">
-        @for ($i = 0; $i < 4; $i++)
+    <div id="image-upload-container" class="grid grid-cols-2 gap-3 lg:grid-cols-5">
+        @for ($i = 0; $i < 10; $i++)
             <div
                 class="image aspect-square relative rounded-lg bg-slate-200 border-dashed border-4 border-blue-300 overflow-hidden">
                 <input type="file" name="gambar[{{ $i }}]" class="image-upload"

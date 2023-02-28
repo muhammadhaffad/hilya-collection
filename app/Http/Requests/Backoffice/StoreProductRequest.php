@@ -30,7 +30,7 @@ class StoreProductRequest extends FormRequest
             'status' => 'required|string',
             'diskon' => 'numeric|nullable',
             'deskripsi' => 'required|string',
-            'gambar' => 'required|array|min:1|max:4',
+            'gambar' => 'required|array|min:1',
             'gambar.*' => 'required|image',
             'stock' => ['required','array', new Stock]
         ];

@@ -113,7 +113,7 @@ class Product extends Model
         $keyNewImages = collect($request->file('gambar'))->keys();
         if (sizeof($keyOldImages) <= 1 && sizeof($keyNewImages) == 0)
             return;
-        for ($i = 0; $i < 4; $i++) {
+        for ($i = 0; $i < 10; $i++) {
             if ($request->remove[$i] == 'deleted' && $keyOldImages->contains($i)) {
                 if (!isset($keyNewImages[$i])) {
                     $x->product_images->where('gambar', $x->product_images[$i]->gambar)->first()->delete();
