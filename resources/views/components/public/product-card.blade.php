@@ -45,14 +45,31 @@
             <h1 class="block text-sm lg:text-base overflow-hidden overflow-ellipsis">
                 ({{ $product->product_brand->nama }}) {{ $product->nama }}
             </h1>
-            <p class="block overflow-hidden overflow-ellipsis font-semibold text-green-600">
-                @if ($product->product_prices->min('harga') == $product->product_prices->max('harga'))
-                    @rupiah($product->product_prices->min('harga'))
-                @else
-                    @rupiah($product->product_prices->min('harga'))-
-                    @rupiah($product->product_prices->max('harga'))
+            <div>
+                @if($product->status == 'promo')
+                    <s class="block text-xs">
+                        @if ($product->product_prices->min('harga') == $product->product_prices->max('harga'))
+                            @rupiah($product->product_prices->min('harga')) 
+                        @else
+                            @rupiah($product->product_prices->min('harga'))-
+                            @rupiah($product->product_prices->max('harga'))
+                        @endif
+                    </s>
                 @endif
-            </p>
+                <p class="block overflow-hidden overflow-ellipsis font-semibold text-green-600">
+                    @if ($product->product_prices->min('harga') == $product->product_prices->max('harga'))
+                        @rupiah($product->product_prices->min('harga') - $product->product_prices->min('harga')*$product->product_prices->first()->diskon/100) 
+                    @else
+                        @rupiah($product->product_prices->min('harga') - $product->product_prices->min('harga')*$product->product_prices->first()->diskon/100)-
+                        @rupiah($product->product_prices->max('harga') - $product->product_prices->max('harga')*$product->product_prices->first()->diskon/100)
+                    @endif
+                    @if ($product->status == 'promo')
+                    <span class="text-red-600">
+                        (-{{ $product->product_prices->first()->diskon }}%)
+                    </span>
+                    @endif
+                </p>
+            </div>
             <button class="text-sm text-green-500 underline" data-popover-target="{{ $product->slug }}">
                 Lihat stok...
             </button>
@@ -73,6 +90,7 @@
                         Laki-laki (Dewasa)
                         <div class="grid grid-cols-6 gap-2 mb-1 my-2">
                             @foreach ($maleAdult as $stok)
+                                @if($stok->jumlah > 0)
                                 <div class="block">
                                     <div
                                         class="flex rounded-full text-xs justify-center items-center border-[2px] aspect-square">
@@ -82,6 +100,7 @@
                                         {{ $product->product_prices->where('jenis', 1)->where('ukuran',$stok->ukuran)->sum('jumlah') }}
                                     </span>
                                 </div>
+                                @endif
                             @endforeach
                         </div>
                     @endif
@@ -89,6 +108,7 @@
                         Laki-laki (Anak)
                         <div class="grid grid-cols-6 gap-2 mb-1 my-2">
                             @foreach ($maleKid as $stok)
+                                @if($stok->jumlah > 0)
                                 <div class="block">
                                     <div
                                         class="flex rounded-full text-xs justify-center items-center border-[2px] aspect-square">
@@ -98,6 +118,7 @@
                                         {{ $product->product_prices->where('jenis', 3)->where('ukuran',$stok->ukuran)->sum('jumlah') }}
                                     </span>
                                 </div>
+                                @endif
                             @endforeach
                         </div>
                     @endif
@@ -105,6 +126,7 @@
                         Perempuan (Dewasa)
                         <div class="grid grid-cols-6 gap-2 mb-1 my-2">
                             @foreach ($femaleAdult as $stok)
+                                @if ($stok->jumlah > 0)
                                 <div class="block">
                                     <div
                                         class="flex rounded-full text-xs justify-center items-center border-[2px] aspect-square">
@@ -114,6 +136,7 @@
                                         {{ $product->product_prices->where('jenis', 0)->where('ukuran',$stok->ukuran)->sum('jumlah') }}
                                     </span>
                                 </div>
+                                @endif
                             @endforeach
                         </div>
                     @endif
@@ -121,6 +144,7 @@
                         Perempuan (Anak)
                         <div class="grid grid-cols-6 gap-2 mb-1 my-2">
                             @foreach ($femaleKid as $stok)
+                                @if ($stok->jumlah > 0)
                                 <div class="block">
                                     <div
                                         class="flex rounded-full text-xs justify-center items-center border-[2px] aspect-square">
@@ -130,6 +154,7 @@
                                         {{ $product->product_prices->where('jenis', 2)->where('ukuran',$stok->ukuran)->sum('jumlah') }}
                                     </span>
                                 </div>
+                                @endif
                             @endforeach
                         </div>
                     @endif
