@@ -13,12 +13,12 @@ class ProductController extends Controller
     public function getAllProducts(Request $request)
     {
         $brands = ProductBrand::all();
-        $products = Product::with('product_prices', 'product_images', 'product_brand')->where('status', '!=', 'preorder')->latest()->paginate(25);
+        $products = Product::with('product_prices', 'product_images', 'product_brand')->whereHas('product_prices', fn($q) => $q->where('jumlah', '>', 0))->where('status', '!=', 'preorder')->latest()->paginate(25);
         $contact = Contact::first();
         if ($request->get('harga') == 'tinggi') {
-            $products = Product::with('product_prices', 'product_images', 'product_brand')->withMax('product_prices as hargaMaks', 'harga')->where('status', '!=', 'preorder')->orderBy('hargaMaks', 'desc')->paginate(25);
+            $products = Product::with('product_prices', 'product_images', 'product_brand')->whereHas('product_prices', fn($q) => $q->where('jumlah', '>', 0))->withMax('product_prices as hargaMaks', 'harga')->where('status', '!=', 'preorder')->orderBy('hargaMaks', 'desc')->paginate(25);
         } elseif ($request->get('harga') == 'rendah') {
-            $products = Product::with('product_prices', 'product_images', 'product_brand')->withMin('product_prices as hargaMin', 'harga')->where('status', '!=', 'preorder')->orderBy('hargaMin', 'asc')->paginate(25);
+            $products = Product::with('product_prices', 'product_images', 'product_brand')->whereHas('product_prices', fn($q) => $q->where('jumlah', '>', 0))->withMin('product_prices as hargaMin', 'harga')->where('status', '!=', 'preorder')->orderBy('hargaMin', 'asc')->paginate(25);
         }
 
         return view('web.public.pages.all-products.layout', [
