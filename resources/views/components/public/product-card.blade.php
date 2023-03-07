@@ -6,7 +6,7 @@
             class="relative cursor-pointer aspect-[1/1] bg-slate-300 overflow-hidden">
             @if ($product->product_images->first()?->gambar)
                 <img loading="lazy" width="100%" height="100%" alt="acd" src="{{ asset('storage/' . $product->product_images->first()->gambar) }}"
-                    class="object-cover aspect-square rounded-lg">
+                    class="object-fill aspect-square rounded-lg">
             @else
                 <img src="https://source.unsplash.com/600x600" alt="" class="rounded-lg">
             @endif

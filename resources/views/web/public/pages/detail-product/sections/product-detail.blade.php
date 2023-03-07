@@ -6,10 +6,10 @@
                     <div class="aspect-square rounded-lg bg-slate-500 overflow-hidden">
                         @if ($product->product_images->first()->gambar)
                             <img id="main-image" src="{{ asset('storage/' . $product->product_images->first()->gambar) }}"
-                                class="object-cover aspect-square h-full">
+                                class="object-fill aspect-square h-full">
                         @else
                             <img id="main-image" src="https://source.unsplash.com/600x600"
-                                class="object-cover aspect-square h-full">
+                                class="object-fill aspect-square h-full">
                         @endif
                     </div>
                     <div class="grid grid-cols-5 gap-2 py-2">
@@ -19,7 +19,7 @@
                                     class="aspect-square rounded-lg bg-slate-300 overflow-hidden hover:ring-2 cursor-pointer small-image">
                                     @if ($image->gambar)
                                         <img src="{{ asset('storage/' . $image->gambar) }}"
-                                            class="object-cover aspect-square">
+                                            class="object-fill aspect-square">
                                     @else
                                         <img src="https://source.unsplash.com/600x600">
                                     @endif
