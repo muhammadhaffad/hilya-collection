@@ -14,7 +14,7 @@ class ProductPrice extends Model
         'jumlah',
         'harga',
         'jenis',
-        'color_id',
+        'warna',
         'diskon',
         'keterangan'
     ];

@@ -52,7 +52,9 @@
                     <div class="space-y-2">
                         <label for="warna-{{ $index }}"
                             class="block text-sm font-medium text-gray-900 dark:text-gray-300">Warna</label>
-                        <select type="text" id="warna-{{ $index }}" name="stock[{{ $index }}][warna]"
+                        <input type="text" name="stock[{{ $index }}][warna]" placeholder="contoh: Maroon" value="{{ @$productPrice['warna'] ?: @$productPrice->warna }}"
+                            class="block p-2 text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        {{-- <select type="text" id="warna-{{ $index }}" name="stock[{{ $index }}][warna]"
                             class="block p-2 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             onmousedown="selectWarna(this)">
                                 <option value="{{ @$productPrice['warna'] ?: @$productPrice->color_id }}" selected>
@@ -70,7 +72,7 @@
                                 <button class="px-4 rounded-lg border" type="button"
                                     onclick="addColor(this)">+</button>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                     <div class="space-y-2">
                         <label for="price-{{ $index }}"
@@ -167,22 +169,8 @@
             <div class="space-y-2">
                 <label for="warna-${id}"
                     class="block text-sm font-medium text-gray-900 dark:text-gray-300">Warna</label>
-                <select type="text" id="warna-${id}" name="stock[${id}][warna]"
-                    class="block p-2 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    onmousedown="selectWarna(this)">
-                </select>
-                <span class="text-xs">
-                    <button type="button" class="cursor-pointer underline" onclick="toggleColorInput(this)">
-                        Tambah warna
-                    </button>, jika tidak ada.
-                </span>
-                <div class="hidden">
-                    <div class="w-full space-x-2 flex">
-                        <input type="text" value=""
-                            class="block p-2 text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                        <button class="px-4 rounded-lg border" type="button" onclick="addColor(this)">+</button>
-                    </div>
-                </div>
+                <input type="text" name="stock[${id}][warna]" placeholder="contoh: Maroon" value=""
+                    class="block p-2 text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
             </div>
             <div class="space-y-2">
                 <label for="price-${id}"

@@ -52,8 +52,6 @@ class Product extends Model
         $imageDatas = [];
         foreach ($stocks as $stock) {
             if (($stock['jumlah'] > 0 || $stock['harga'] > 0) && isset($stock['warna'])) {
-                $stock['color_id'] = $stock['warna'];
-                unset($stock['warna']);
                 if ($request->diskon && $request->status == 'promo')
                     $stock['diskon'] = $request->diskon;
                 else
@@ -102,7 +100,7 @@ class Product extends Model
                     'jumlah' => $stock['jumlah'],
                     'harga' => $stock['harga'],
                     'jenis' => $stock['jenis'],
-                    'color_id' => $stock['warna'],
+                    'warna' => $stock['warna'],
                     'diskon' => $request->diskon
                 ]
             );
