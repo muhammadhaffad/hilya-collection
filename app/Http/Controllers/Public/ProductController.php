@@ -100,7 +100,7 @@ class ProductController extends Controller
         $sizeSelected = [];
         $genders = [0 => 'PR Dewasa', 1 => 'LK Dewasa', 2 => 'PR Anak', 3 => 'LK Dewasa'];
         foreach ($productPrices as $productPrice) {
-            $warna = ucfirst($productPrice->color()->first()->warna);
+            $warna = $productPrice->warna;
             $gender = $genders[$productPrice->jenis];
             $jumlah = $request->produk[$productPrice->id]['jumlah'];
             $keterangan = $productPrice->keterangan ? "($productPrice->keterangan)" : "";
