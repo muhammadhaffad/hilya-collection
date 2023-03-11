@@ -52,6 +52,13 @@ class ProductController extends Controller
 
     public function getProduct(Product $product)
     {
+        $productPrices = $product->product_prices()->get();
+        foreach ($productPrices as $productPrice) {
+            if (!$productPrice->warna) {
+                $productPrice->warna = $productPrice->color()->first()->warna;
+                $productPrice->save();
+            }
+        }
         $contact = Contact::first();
         return view('web.public.pages.detail-product.layout', [
             'product' => $product->load('product_prices', 'product_images', 'product_brand'),
