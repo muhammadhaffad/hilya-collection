@@ -15,17 +15,22 @@ class Products extends Component
     
     public function render()
     {
+        $limit = 10;
         $products = Product::with('product_prices', 'product_images', 'product_brand')->whereHas('product_prices', fn($q) => $q->where('jumlah', '>', 0))->where('status', '!=', 'preorder')->latest();
-        $count = $products->count() - $this->limit > $this->limit ? $this->limit : $products->count()-$this->limit;
+        $productTotal = $products->count();
         
-        return view('livewire.public.pages.home.sections.products', ['products' => $products->paginate($this->limit), 'count' => $count]);
+        return view('livewire.public.pages.home.sections.products', [
+            'products' => $products->paginate($this->limit), 
+            'limit' => $limit, 
+            'total' => $this->limit, 
+            'productTotal' => $productTotal]);
     }
 
     public function prodData()
     {
-        if ($this->limit <= 50) {
-            $this->limit += $this->limit;
-        }
+        $this->limit += 10;
+        // if ($this->limit < 2) {
+        // }
     }
 
 }
