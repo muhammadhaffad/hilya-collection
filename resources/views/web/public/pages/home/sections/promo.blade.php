@@ -7,7 +7,7 @@
                 class="text-red-500 bg-red-100 dark:bg-slate-600 dark:text-red-300">
             </x-public.section-badge>
             @if ($promo->count() > 10)
-                <a href="{{ route('home.type-products', ['type' => $promo->slug]) }}"
+                <a href="{{ route('home.type-products', ['status' => 'promo']) }}"
                     class="self-baseline text-xs text-blue-500 hover:text-blue-800 focus:text-blue-800 focus:font-semibold font-semibold block lg:text-lg">Lihat
                     Semua</a>
             @endif

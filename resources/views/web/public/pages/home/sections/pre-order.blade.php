@@ -7,7 +7,7 @@
                 class="text-green-500 bg-green-100 dark:bg-slate-600 dark:text-green-300">
             </x-public.section-badge>
             @if ($preorder->count() > 10)
-                <a href="{{ route('home.type-products', ['type' => $preorder->slug]) }}"
+                <a href="{{ route('home.type-products', ['status' => 'preorder']) }}"
                     class="self-baseline text-xs text-blue-500 hover:text-blue-800 focus:text-blue-800 focus:font-semibold font-semibold block lg:text-lg">Lihat
                     Semua</a>
             @endif
