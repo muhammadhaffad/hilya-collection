@@ -396,7 +396,7 @@
                                 <form action="{{ route('admin.delete.product', ['product' => $prod->slug]) }}"
                                     method="post">
                                     @csrf
-                                    <button class="trash-button text-red-500 hover:text-red-600" type="button" onclick="return confirm('Anda yakin ingin menghapus produk ini?')">
+                                    <button class="trash-button text-red-500 hover:text-red-600" type="submit" onclick="return confirm('Anda yakin ingin menghapus produk ini?')">
                                         <i class="fa fa-trash-alt"></i>
                                         Hapus
                                     </button>
