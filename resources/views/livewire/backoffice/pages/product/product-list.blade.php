@@ -275,21 +275,6 @@
                                 <img src="https://source.unsplash.com/600x600" alt="" class="rounded-lg">
                             @endisset
                             <div class="absolute flex flex-wrap gap-1 top-0 right-0 flex-row-reverse py-1 px-1">
-                                {{-- @php
-                            $postDate = new \Carbon\Carbon($prod->tanggalPost);
-                            $now = new \Carbon\Carbon(); 
-                            @endphp
-                            @if ($postDate->diff($now)->days < 3)
-                            <div
-                                class="px-2 py-1 rounded-md bg-red-600 bg-opacity-70 text-xs font-semibold text-white">
-                                Baru
-                            </div>
-                            @endif
-                            @if ($prod->product_prices->sum('jumlah') < 1)
-                            <div class="px-2 py-1 rounded-md bg-slate-600 bg-opacity-70 text-xs font-semibold text-white">
-                                Habis
-                            </div>
-                         @endif --}}
                             </div>
                         </a>
                         <div class="p-3">
@@ -411,7 +396,7 @@
                                 <form action="{{ route('admin.delete.product', ['product' => $prod->slug]) }}"
                                     method="post">
                                     @csrf
-                                    <button class="trash-button text-red-500 hover:text-red-600" type="button">
+                                    <button class="trash-button text-red-500 hover:text-red-600" type="button" onclick="return confirm('Anda yakin ingin menghapus produk ini?')">
                                         <i class="fa fa-trash-alt"></i>
                                         Hapus
                                     </button>
